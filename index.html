@@ -11,9 +11,26 @@
       href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap"
       rel="stylesheet"
     />
+    <style>
+      /* Only appears if the app has not started after a moment (see the note inside #root). */
+      @keyframes boot-show { to { opacity: 1; } }
+      #boot-note { max-width: 36rem; margin: 3rem auto; padding: 0 1.25rem; font-family: system-ui, sans-serif; line-height: 1.5; opacity: 0; animation: boot-show 0s 1.5s forwards; }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- React replaces everything inside #root when the app starts.
+           If you can still read this, the app's files did not load. -->
+      <div id="boot-note">
+        <p><strong>The app didn't start.</strong></p>
+        <p>
+          If you are the one who put this site online: it must publish the <code>dist</code> folder that
+          <code>npm run build</code> creates, not the project folder itself. Check the build command
+          (<code>npm run build</code>) and the publish directory (<code>dist</code>) in your hosting settings.
+        </p>
+      </div>
+    </div>
+    <noscript>This app needs JavaScript turned on to work.</noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

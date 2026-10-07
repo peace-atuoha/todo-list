@@ -60,6 +60,22 @@ Press `Ctrl + C` in the terminal to stop it.
 
 From then on, every time you push a change to `main`, the site updates by itself.
 
+## Put it on Netlify instead
+
+Netlify needs the **built** app, not the source files. The file `netlify.toml` already tells it how.
+
+**Easiest way (stays up to date by itself):**
+1. On https://app.netlify.com choose **Add new site → Import an existing project** and pick your GitHub repository.
+2. Check the settings show **Build command** `npm run build` and **Publish directory** `dist` (they are filled in for you), then click **Deploy**.
+
+**Drag-and-drop way:**
+1. On your computer run `npm install` and then `npm run build`. This creates a folder called `dist`.
+2. Drag **the `dist` folder** (not the whole project folder) onto the Netlify drop area.
+
+**If the page is blank:** you almost certainly published the project folder instead of `dist`.
+Fix the publish directory (or drag `dist` again). If the build itself fails with a Node version
+message, add an environment variable `NODE_VERSION` = `22` in Site configuration.
+
 ## What's in the folder
 
 | File | What it does |
@@ -75,3 +91,4 @@ From then on, every time you push a change to `main`, the site updates by itself
 | `src/storage.js` | Saving and loading tasks and Trash in the browser |
 | `src/styles.css` | Colours and layout |
 | `.github/workflows/deploy.yml` | Publishes the site to GitHub Pages |
+| `netlify.toml` | Tells Netlify how to build and publish the site |
